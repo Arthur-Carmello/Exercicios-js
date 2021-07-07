@@ -1,0 +1,25 @@
+{
+  "name": "exercicios-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "production": "pm2 start index.js --name appx-backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body": "^5.1.0",
+    "body-parse": "0.1.0",
+    "express": "4.17.1",
+    "forever": "^3.0.4",
+    "parser": "^0.1.4",
+    "pm2": "4.5.6",
+    "supervisor": "^0.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.7"
+  }
+}

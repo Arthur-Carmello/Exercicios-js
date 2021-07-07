@@ -1,0 +1,102 @@
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e3615653129fed631fcce"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e3615653129fed631fccb"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e3615653129fed631fccc"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e3615653129fed631fccd"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ],
+        "populacao" : 450000
+}
+> db.empresas.insert({
+... nome:"Bradesco",
+... estadoId: ObjectId("605e3615653129fed631fcce")})
+WriteResult({ "nInserted" : 1 })
+>
+> db.empresas.find().pretty()
+{
+        "_id" : ObjectId("605e37cb653129fed631fccf"),
+        "nome" : "Bradesco",
+        "estadoId" : ObjectId("605e3615653129fed631fcce")
+}
+> db.empresas.insert({
+... nome: "Vale",
+... cidadeId: ObjectId("605e3615653129fed631fccd")})
+WriteResult({ "nInserted" : 1 })
+> db.empresas.find().pretty()
+{
+        "_id" : ObjectId("605e37cb653129fed631fccf"),
+        "nome" : "Bradesco",
+        "estadoId" : ObjectId("605e3615653129fed631fcce")
+}
+{
+        "_id" : ObjectId("605e382c653129fed631fcd0"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("605e3615653129fed631fccd")
+}
+> db.estados.insert({
+... ... nome: "Rio de Janeiro",
+... ... sigla: "RJ",
+... ... região: "Sudeste",
+... ... cidades: [{ _id: ObjectId(), nome:"Niterói", area:133.9, populacao: 487562 }]})
+WriteResult({ "nInserted" : 1 })
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e3615653129fed631fcce"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e3615653129fed631fccb"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e3615653129fed631fccc"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e3615653129fed631fccd"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ],
+        "populacao" : 450000
+}
+{
+        "_id" : ObjectId("605e38c1653129fed631fcd2"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e38c1653129fed631fcd1"),
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}

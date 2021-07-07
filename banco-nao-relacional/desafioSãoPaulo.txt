@@ -1,0 +1,75 @@
+> db.estados.insert({
+... nome: "São Paulo",
+... sigla: "SP",
+... regiao: "Sudeste",
+... cidades: [{
+... _id: ObjectId(),
+... nome: "Campinas",
+... area: 295.7,
+... prefeito: "Arthur Carmello",
+... populacao: 1098232
+... }, {
+... _id: ObjectId(),
+... nome: "Guarulhos",
+... populacao: 1234234
+... }, {
+... _id: ObjectId(),
+... nome: "Sorocaba",
+... distanciaCapital: 87,
+... populacao: 312131
+... }]
+... })
+WriteResult({ "nInserted" : 1 })
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e0b9a653129fed631fcca"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc7"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc8"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc9"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ]
+}

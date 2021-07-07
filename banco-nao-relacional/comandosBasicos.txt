@@ -1,0 +1,20 @@
+C:\Users\Arthur>cd..
+
+C:\Users>cd..
+
+C:\>
+
+
+mongo -version
+mongo
+mongod
+cls
+help
+db.
+db.createCollection('estados')
+db.createCollection('Estados')
+use wm
+show dbs
+show collections
+db.Estados.drop()
+db.estados.drop()

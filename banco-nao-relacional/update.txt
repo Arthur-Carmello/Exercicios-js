@@ -1,0 +1,244 @@
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e0b9a653129fed631fcca"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc7"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc8"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc9"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ]
+}
+> db.estados.update({sigla: "SP"},{$set: {populacao: 4500000}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e0b9a653129fed631fcca"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc7"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc8"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc9"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ],
+        "populacao" : 4500000
+}
+>  db.estados.update({sigla: "AL"},{$set: {cidades: [{nome: "Sergipe"}]}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200,
+        "cidades" : [
+                {
+                        "nome" : "Sergipe"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e0b9a653129fed631fcca"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc7"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc8"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc9"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ],
+        "populacao" : 4500000
+}
+> db.estados.update(
+... {sigla: "SP"},
+... {$push: {cidades: {nome: "Santos", populacao: 433399}}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200,
+        "cidades" : [
+                {
+                        "nome" : "Sergipe"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e0b9a653129fed631fcca"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc7"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc8"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc9"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                },
+                {
+                        "nome" : "Santos",
+                        "populacao" : 433399
+                }
+        ],
+        "populacao" : 4500000
+}
+> db.estados.find({populacao: {$exists: true}), {_id: 0, nome: 1})
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:43
+> db.estados.find({populacao: {$exists: true}}, {_id: 0, nome: 1})
+{ "nome" : "Alagoas" }
+{ "nome" : "São Paulo" }
+>

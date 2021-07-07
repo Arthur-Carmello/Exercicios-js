@@ -1,0 +1,163 @@
+> db.estados.find()
+{ "_id" : ObjectId("605e0665653129fed631fcc4"), "nome" : "Acre", "sigla" : "AC", "região" : "Norte" }
+{ "_id" : ObjectId("605e06d2653129fed631fcc5"), "nome" : "Alagoas", "sigla" : "AL", "região" : "Nordeste", "populacao" : 332200 }
+{ "_id" : ObjectId("605e080a653129fed631fcc6"), "nome" : "Rio de Janeiro", "sigla" : "RJ", "região" : "Sudeste", "cidades" : [ { "nome" : "Niterói", "area" : 133.9, "populacao" : 487562 } ] }
+{ "_id" : ObjectId("605e0b9a653129fed631fcca"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : [ { "_id" : ObjectId("605e0b9a653129fed631fcc7"), "nome" : "Campinas", "area" : 295.7, "prefeito" : "Arthur Carmello", "populacao" : 1098232 }, { "_id" : ObjectId("605e0b9a653129fed631fcc8"), "nome" : "Guarulhos", "populacao" : 1234234 }, { "_id" : ObjectId("605e0b9a653129fed631fcc9"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 312131 } ] }
+> db.estados.find().pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+{
+        "_id" : ObjectId("605e0b9a653129fed631fcca"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "regiao" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc7"),
+                        "nome" : "Campinas",
+                        "area" : 295.7,
+                        "prefeito" : "Arthur Carmello",
+                        "populacao" : 1098232
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc8"),
+                        "nome" : "Guarulhos",
+                        "populacao" : 1234234
+                },
+                {
+                        "_id" : ObjectId("605e0b9a653129fed631fcc9"),
+                        "nome" : "Sorocaba",
+                        "distanciaCapital" : 87,
+                        "populacao" : 312131
+                }
+        ]
+}
+> db.estados.findOne()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+> db.estados.findOne({sigla: "RJ"})
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+> db.estados.findOne({sigla: "RJ"}).pretty()
+uncaught exception: TypeError: db.estados.findOne(...).pretty is not a function :
+@(shell):1:1
+> db.estados.find({sigla: "RJ"}).pretty()
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+> db.estados.find({$ort: [{sigla: "RJ", sigla: "AC"}]}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown top level operator: $ort",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.estados.find({$or: [{sigla: "RJ", sigla: "AC"}]}).pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+> db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty()
+{
+        "_id" : ObjectId("605e0665653129fed631fcc4"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "Norte"
+}
+{
+        "_id" : ObjectId("605e080a653129fed631fcc6"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "nome" : "Niterói",
+                        "area" : 133.9,
+                        "populacao" : 487562
+                }
+        ]
+}
+> db.estados.find({populacao: {$exists: true}})
+{ "_id" : ObjectId("605e06d2653129fed631fcc5"), "nome" : "Alagoas", "sigla" : "AL", "região" : "Nordeste", "populacao" : 332200 }
+> db.estados.find({populacao: {$exists: true}}).pretty()
+{
+        "_id" : ObjectId("605e06d2653129fed631fcc5"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "região" : "Nordeste",
+        "populacao" : 332200
+}
+> db.estados.find().skip(1)
+{ "_id" : ObjectId("605e06d2653129fed631fcc5"), "nome" : "Alagoas", "sigla" : "AL", "região" : "Nordeste", "populacao" : 332200 }
+{ "_id" : ObjectId("605e080a653129fed631fcc6"), "nome" : "Rio de Janeiro", "sigla" : "RJ", "região" : "Sudeste", "cidades" : [ { "nome" : "Niterói", "area" : 133.9, "populacao" : 487562 } ] }
+{ "_id" : ObjectId("605e0b9a653129fed631fcca"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : [ { "_id" : ObjectId("605e0b9a653129fed631fcc7"), "nome" : "Campinas", "area" : 295.7, "prefeito" : "Arthur Carmello", "populacao" : 1098232 }, { "_id" : ObjectId("605e0b9a653129fed631fcc8"), "nome" : "Guarulhos", "populacao" : 1234234 }, { "_id" : ObjectId("605e0b9a653129fed631fcc9"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 312131 } ] }
+> db.estados.find().skip(2)
+{ "_id" : ObjectId("605e080a653129fed631fcc6"), "nome" : "Rio de Janeiro", "sigla" : "RJ", "região" : "Sudeste", "cidades" : [ { "nome" : "Niterói", "area" : 133.9, "populacao" : 487562 } ] }
+{ "_id" : ObjectId("605e0b9a653129fed631fcca"), "nome" : "São Paulo", "sigla" : "SP", "regiao" : "Sudeste", "cidades" : [ { "_id" : ObjectId("605e0b9a653129fed631fcc7"), "nome" : "Campinas", "area" : 295.7, "prefeito" : "Arthur Carmello", "populacao" : 1098232 }, { "_id" : ObjectId("605e0b9a653129fed631fcc8"), "nome" : "Guarulhos", "populacao" : 1234234 }, { "_id" : ObjectId("605e0b9a653129fed631fcc9"), "nome" : "Sorocaba", "distanciaCapital" : 87, "populacao" : 312131 } ] }
+> db.estados.count()
+4
+> db.estados.find({sigla: "SP"},{nome: 1, sigla: 1})
+{ "_id" : ObjectId("605e0b9a653129fed631fcca"), "nome" : "São Paulo", "sigla" : "SP" }
+> db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id:0})
+{ "cidades" : [ { "nome" : "Campinas" }, { "nome" : "Guarulhos" }, { "nome" : "Sorocaba" } ] }
+> db.estados.find({sigla: "SP"},{nome: 1, sigla: 1,_Id:0})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Cannot do exclusion on field _Id in inclusion projection",
+        "code" : 31254,
+        "codeName" : "Location31254"
+}
+> db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1,_id:0})
+{ "nome" : "São Paulo", "sigla" : "SP" }
+>
